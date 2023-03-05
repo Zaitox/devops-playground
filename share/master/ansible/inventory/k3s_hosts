@@ -1,0 +1,9 @@
+[master]
+192.168.33.11
+
+[minions]
+192.168.33.[12:14]
+
+[all:children]
+master
+minions

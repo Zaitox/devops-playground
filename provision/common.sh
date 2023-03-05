@@ -1,2 +1,2 @@
-apk update
-apk add htop
+sudo apk update
+sudo apk add htop
