@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
   k8s_master_nodes = ["192.168.33.11"]
   # Define the Kubernetes minion nodes to provision
   k8s_minion_nodes = ["192.168.33.12", "192.168.33.13", "192.168.33.14"]
-  
+
   # Baseline provisioning for every VM
   config.vm.provision "shell", path: "provision/common.sh"
 
@@ -18,6 +18,9 @@ Vagrant.configure("2") do |config|
     config.vm.define "k8s-master#{i+1}" do |master|
       master.vm.hostname = "k8s-master#{i+1}"
       master.vm.network :private_network, ip: ip
+      master.vm.network "forwarded_port", guest: 80, host: 80
+      master.vm.network "forwarded_port", guest: 443, host: 443 
+      master.vm.network "forwarded_port", guest: 8080, host: 8080 
       master.vm.synced_folder "./share/master", "/vagrant/master", mount_options: ["ro"]
       master.vm.synced_folder "./share/common", "/vagrant/common"
       master.vm.provider "virtualbox" do |vb|
