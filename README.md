@@ -10,3 +10,13 @@ Run with:
 ```
 vagrant up
 ```
+
+Stop with:
+```
+vagrant halt
+```
+
+Remove with:
+```
+vagrant delete -f
+```
