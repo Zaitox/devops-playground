@@ -1,4 +1,5 @@
 apk add ansible
+apk add helm
 curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--advertise-address ${MASTER_IP}" sh -s - 
 
 # wait for the node-token file
@@ -12,3 +13,4 @@ if [[ $counter -eq 10 ]]; then
   echo "Failed to get Kubernetes token after 10 retries"
   exit 1
 fi
+
